@@ -1,10 +1,12 @@
 package fr.eni.PizzaOnlinenico.bo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 @Data
@@ -12,16 +14,25 @@ import lombok.NoArgsConstructor;
 public class Pizza {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idPizza;
 	private String name;
-	private double price;
-	
-	public Pizza(String name, double price) {
-		super();
+	private Double price;
+
+	@ManyToOne
+	private BasePizza basePizza;
+
+	@OneToMany(mappedBy = "pizza")
+	private List<Topping> toppings = new ArrayList<>();
+
+	@OneToMany(mappedBy = "pizza")
+	private List<Cheese> cheeses = new ArrayList<>();
+
+
+	public Pizza(String name) {
 		this.name = name;
-		this.price = price;
 	}
-	
+
+
 	
 }
