@@ -15,7 +15,7 @@ public class Pizza {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idPizza;
+	private Long idPizza;
 	private String name;
 	private Double price;
 
@@ -27,6 +27,9 @@ public class Pizza {
 
 	@OneToMany(mappedBy = "pizza")
 	private List<Cheese> cheeses = new ArrayList<>();
+	
+	@ManyToOne
+	private Comand comand;
 
 
 	public Pizza(String name) {

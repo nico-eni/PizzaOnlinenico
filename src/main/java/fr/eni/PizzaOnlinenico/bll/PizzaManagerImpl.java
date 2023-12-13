@@ -2,10 +2,16 @@ package fr.eni.PizzaOnlinenico.bll;
 
 import fr.eni.PizzaOnlinenico.bo.BasePizza;
 import fr.eni.PizzaOnlinenico.bo.Cheese;
+import fr.eni.PizzaOnlinenico.bo.Comand;
 import fr.eni.PizzaOnlinenico.bo.Topping;
 import fr.eni.PizzaOnlinenico.dal.BasePizzaDAO;
 import fr.eni.PizzaOnlinenico.dal.CheeseDAO;
+import fr.eni.PizzaOnlinenico.dal.ComandDAO;
 import fr.eni.PizzaOnlinenico.dal.ToppingDAO;
+
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +19,13 @@ import fr.eni.PizzaOnlinenico.bo.Pizza;
 import fr.eni.PizzaOnlinenico.dal.PizzaDAO;
 
 /**
- * Classe de gestion des pizzas.
- * Cette classe permet de gérer les opérations liées aux pizzas telles que l'ajout d'une pizza, d'une base,
- * d'un fromage et d'une garniture.
+ * Classe de gestion des pizzas. Cette classe permet de gérer les opérations
+ * liées aux pizzas telles que l'ajout d'une pizza, d'une base, d'un fromage et
+ * d'une garniture.
  */
 
 @Service
-public class PizzaManagerImpl implements PizzaManager{
+public class PizzaManagerImpl implements PizzaManager {
 
 	@Autowired
 	private PizzaDAO pizzadao;
@@ -29,10 +35,12 @@ public class PizzaManagerImpl implements PizzaManager{
 	private CheeseDAO cheesedao;
 	@Autowired
 	private ToppingDAO toppingdao;
+	@Autowired
+	private ComandDAO comanddao;
 
 	/**
-	 * Ajoute une pizza à la base de données.
-	 * Cette méthode calcule également le prix de la pizza avant de l'enregistrer.
+	 * Ajoute une pizza à la base de données. Cette méthode calcule également le
+	 * prix de la pizza avant de l'enregistrer.
 	 *
 	 * @param pizza L'objet Pizza à ajouter.
 	 */
@@ -44,14 +52,14 @@ public class PizzaManagerImpl implements PizzaManager{
 	}
 
 	/**
-	 * Calcule le prix d'une pizza.
-	 * Le prix est déterminé en fonction de la base, du nombre de fromages et de garnitures.
+	 * Calcule le prix d'une pizza. Le prix est déterminé en fonction de la base, du
+	 * nombre de fromages et de garnitures.
 	 *
 	 * @param pizza L'objet Pizza pour lequel le prix est calculé.
 	 * @return Le prix calculé de la pizza.
 	 */
 
-	private double calculatePrice(Pizza pizza){
+	private double calculatePrice(Pizza pizza) {
 		double basePrice = pizza.getBasePizza().equals("Tomate") ? 5 : 6;
 		double cheesePrice = pizza.getCheeses().size();
 		double toppingPrice = pizza.getToppings().size();
@@ -89,4 +97,16 @@ public class PizzaManagerImpl implements PizzaManager{
 	public void AddTopping(Topping topping) {
 		toppingdao.save(topping);
 	}
+
+	/**
+	 * Ajoute la commande
+	 */
+	@Override
+	public void AddComand(Comand comand) {
+		comanddao.save(comand);
+	}
+
+
+
+
 }
