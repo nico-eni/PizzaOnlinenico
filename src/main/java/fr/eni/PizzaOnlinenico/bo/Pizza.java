@@ -28,6 +28,9 @@ public class Pizza {
 
 	@OneToMany(mappedBy = "pizza")
 	private List<Cheese> cheeses = new ArrayList<>();
+	
+	@ManyToOne
+	private Comand comand;
 
 
 	public Pizza(String name , String imageUrl) {

@@ -1,0 +1,36 @@
+* {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+.formPanier {
+    width: 500px;
+    min-height: 400px;
+    background-color: bisque;
+    color: rgb(96, 54, 3);
+}
+
+.formPanier h1 {
+    color: rgb(96, 54, 3);
+}
+
+.btnPizza {
+    border: none;
+    background-color: bisque;
+
+}
+
+.inputPromo {
+    padding: 0.4rem;
+    margin-left: 0.5rem;
+}
+
+.btnOk,
+.bntCmdOtherDay {
+    background-color: #FCC419;
+    color: rgb(96, 54, 3);
+    padding: 0.4rem;
+    margin-left: 0.5rem;
+}

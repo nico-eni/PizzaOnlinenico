@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/uikit.min.css" />
+	<script src="/js/uikit.min.js"></script>
+	<script src="/js/uikit-icons.min.js"></script>
+	<link rel="stylesheet" href="/style.css">
+	<title>Panier de commande de pizza</title>
+</head>
+
+<body>
+
+	<main class="formPanier">
+
+		<!-- Affichage du panier de commande de pizza -->
+
+		<div class="uk-text-center">
+
+			<!-- Affichage du titre centré et en majuscule -->
+			<h1 class="uk-text-uppercase ">Ma commande</h1>
+
+			<!-- Affichage de l'inmage "panier" centré et en majuscule -->
+			<img src="images/panier.png" alt="Panier">
+		</div>
+
+
+
+
+
+		<!-- Affichage des pizzas personnalisées ou non -->
+		<div class="uk-margin-left uk-margin-top" th:each="comand : ${listComand}">
+
+			<div th:each="pizza : ${comand.pizza} ">
+
+				<!-- Récupérer l'attribut qui affiche le nom de la pizza -->
+				<span class="uk-text-italic uk-text-primary" th:text="${pizza.name}"/>
+
+				<!-- Affichage de l'image Moins -->
+				<button class="btnPizza uk-margin-left uk-margin-right" type="submit" name="removePizza">
+					<img src="/images/moins.png" alt="Bouton plus" width="32px">
+				</button>
+
+
+
+
+				<!-- 
+            Afficher le chiffre qui correspond au nombre de pizza - 
+            Incrémenter - Décrémenter    
+        --> 1
+
+				<!-- Affichage de l'image Plus -->
+
+
+
+				<button class="btnPizza uk-margin-left" type="submit" name="addPizza">
+					<img src="/images/plus.png" alt="Bouton plus" width="32px">
+				</button>
+
+
+				<span class="uk-margin-left"></span>
+				<!-- Afficher le prix de la pizza -->
+				<span class="uk-text-italic uk-text-primary">8.50 €</span>
+
+				<img class="uk-margin-left" src="/images/poubelle.png" alt="Poubelle" width="32px">
+
+			</div>
+		</div>
+
+
+		<!-- Affichage du prix total -->
+
+		<div class="uk-margin-right uk-margin-top uk-text-right">
+			Total =
+
+			<!--
+            Récupérer la somme du prix calculée en fonction du prix des pizza
+            et du nombre  de pizza choisies
+        -->
+			<span class="uk-text-italic uk-text-primary">prixTotal</span>
+		</div>
+
+
+		<!-- Gestion du code promo -->
+		<div class="uk-margin-left uk-margin-top ">
+			<label class="CodePromo"> Code Promo ? </label>
+			<input class="inputPromo" type="text" name="CodePromo">
+			<button class="btnOk" type="submit">OK</button>
+		</div>
+
+		<!-- Affichage du bouton -->
+		<div class="uk-margin-top uk-margin-bottom uk-text-center ">
+			<button class="bntCmdOtherDay">Commande pour un autre jour</button>
+		</div>
+
+	</main>
+</body>
+
+
+</html>
