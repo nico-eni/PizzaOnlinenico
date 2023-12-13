@@ -27,7 +27,7 @@ public class PizzaOnlinenicoApplication {
 	@PostConstruct
 	@Transactional
 	public void init() {
-		// Create a BasePizza
+		/* // Create a BasePizza
 		BasePizza basePizza = new BasePizza("Tomate");
 		pizzamanager.AddBasePizza(basePizza);
 
@@ -47,48 +47,6 @@ public class PizzaOnlinenicoApplication {
 		topping1.setPizza(pizza1);
 		pizza1.getToppings().add(topping1);
 		pizzamanager.AddTopping(topping1);
-
-		// pour ajouter le prix de la pizza une fois que tous les ingredients sont
-		// ajoutés
-//		pizzamanager.AddPizza(pizza1);
-//
-//		BasePizza basePizza2 = new BasePizza("Crème");
-//		pizzamanager.AddBasePizza(basePizza2);
-//
-//		// Create a Pizza
-//		Pizza pizza2 = new Pizza("Crème Pizza");
-//		pizza2.setBasePizza(basePizza2);
-//		pizzamanager.AddPizza(pizza2);
-//
-//		// Create a Cheese
-//		cheese1.setPizza(pizza2);
-//		pizza2.getCheeses().add(cheese1);
-//		pizzamanager.AddCheese(cheese1);
-//
-//		// Create a Topping
-//		topping1.setPizza(pizza2);
-//		pizza2.getToppings().add(topping1);
-//		pizzamanager.AddTopping(topping1);
-//
-//		// pour ajouter le prix de la pizza une fois que tous les ingredients sont
-//		// ajoutés
-//		pizzamanager.AddPizza(pizza2);
-//
-//		/**
-//		 * Partie Mélissa
-//		 */
-//
-//		// Création d'une commande
-//		Comand comand1 = new Comand("12/12/2023", 28.00);
-//		List<Pizza> pizzaList = comand1.getPizza();
-//		pizzaList.add(pizza1);
-//		pizzaList.add(pizza2);
-//		pizzaList.forEach(n -> System.out.println(n.getName()));
-//		pizzamanager.AddComand(comand1);
-//
-//		System.out.println(pizza1.getName());
-//		System.out.println(comand1.getDate());
-//
 	}
 	
 //	model.addAttribute("listComand", comanddao.findAll());	

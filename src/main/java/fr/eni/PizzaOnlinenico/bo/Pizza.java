@@ -18,6 +18,7 @@ public class Pizza {
 	private Long idPizza;
 	private String name;
 	private Double price;
+	private String imageUrl;
 
 	@ManyToOne
 	private BasePizza basePizza;
@@ -32,8 +33,9 @@ public class Pizza {
 	private Comand comand;
 
 
-	public Pizza(String name) {
+	public Pizza(String name , String imageUrl) {
 		this.name = name;
+		this.imageUrl = imageUrl;
 	}
 
 
