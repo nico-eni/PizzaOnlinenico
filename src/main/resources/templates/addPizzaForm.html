@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/css/uikit.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/js/uikit-icons.min.js"></script>
+    <style>
+        body {
+            background-color: #fff9e6;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        form {
+            width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        legend {
+            color: #ffd700;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        label {
+            margin-bottom: 10px;
+            display: block;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #ffd700;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #e6c300;
+        }
+
+        button {
+            background-color: #ffc107 !important;
+        }
+    </style>
+
+
+    <title>Votre Pizza</title>
+</head>
+<body>
+<form action="/submit-pizza" method="post">
+    <fieldset>
+        <legend>Nom de la pizza</legend>
+        <label for="pizza-name">Name of the pizza:</label>
+        <input type="text" id="pizza-name" name="pizza_name" required aria-required="true"><br><br>
+
+        <label for="image-url">Url image:</label>
+        <input type="text" id="image-url" name="image_url" required aria-required="true"><br><br>
+
+        <label for="base">Base:</label>
+        <select id="base" name="base" aria-label="Base of pizza" required aria-required="true">
+            <option value="tomato">Tomato</option>
+            <option value="cream">Créme</option>
+        </select><br><br>
+
+        <fieldset>
+            <legend>Fromages:</legend>
+            <label for="mozzarella">
+                <input type="checkbox" id="mozzarella" name="cheese" value="mozzarella">
+                Mozzarella
+            </label>
+            <label for="chevre">
+                <input type="checkbox" id="chevre" name="cheese" value="chevre">
+                Chèvre
+            </label>
+            <label for="emmental">
+                <input type="checkbox" id="emmental" name="cheese" value="emmental">
+                Emmental
+            </label>
+            <label for="gorgonzola">
+                <input type="checkbox" id="gorgonzola" name="cheese" value="gorgonzola">
+                Gorgonzola
+            </label>
+        </fieldset><br>
+
+                <fieldset>
+                    <legend>Ingredients:</legend>
+                    <p th:text="${error}" style="color: red;"></p>
+                    <label for="Ananas">
+                        <input type="checkbox" id="Ananas" name="ingredient" value="Ananas">
+                        Ananas
+                    </label>
+                    <label for="Artichaut">
+                        <input type="checkbox" id="Artichaut" name="ingredient" value="Artichaut">
+                        Artichaut
+                    </label>
+
+                    <label for="Champignon de Paris">
+                        <input type="checkbox" id="Champignon de Paris" name="ingredient" value="Champignon de Paris">
+                        Champignon de Paris
+                    </label>
+                    <label for="Chorizo">
+                        <input type="checkbox" id="Chorizo" name="ingredient" value="Chorizo">
+                        Chorizo
+                    </label>
+                    <label for="Jambon">
+                        <input type="checkbox" id="Jambon" name="ingredient" value="Jambon">
+                        Jambon
+                    </label>
+                    <label for="Olives vertes">
+                        <input type="checkbox" id="Olives vertes" name="ingredient" value="Olives vertes">
+                        Olives vertes
+                    </label>
+                    <label for="Pignons de pin">
+                        <input type="checkbox" id="Pignons de pin" name="ingredient" value="Pignons de pin">
+                        Pignons de pin
+                    </label>
+                    <label for="Poivron">
+                        <input type="checkbox" id="Poivron" name="ingredient" value="Poivron">
+                        Poivron
+                    </label>
+                    <label for="Salade">
+                        <input type="checkbox" id="Salade" name="ingredient" value="Salade">
+                        Salade
+                    </label>
+                </fieldset><br>
+
+        <input type="submit" value="Create Pizza">
+    </fieldset>
+</form>
+</body>
+</html>
