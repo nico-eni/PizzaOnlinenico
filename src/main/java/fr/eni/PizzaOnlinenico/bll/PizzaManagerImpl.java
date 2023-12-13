@@ -98,13 +98,7 @@ public class PizzaManagerImpl implements PizzaManager {
 		toppingdao.save(topping);
 	}
 
-	/**
-	 * Ajoute la commande
-	 */
-	@Override
-	public void AddComand(Comand comand) {
-		comanddao.save(comand);
-	}
+
 
 
 

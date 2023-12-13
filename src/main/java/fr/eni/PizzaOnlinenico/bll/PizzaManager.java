@@ -14,7 +14,7 @@ public interface PizzaManager {
 		void AddCheese(Cheese cheese);
 		void AddTopping(Topping topping);
 		
-		void AddComand(Comand comand);
+
 
 		
 

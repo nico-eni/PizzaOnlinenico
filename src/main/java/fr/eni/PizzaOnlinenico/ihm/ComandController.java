@@ -35,6 +35,9 @@ public class ComandController {
 		System.out.println("Nombre de commandes : " + listComand.size());
 		model.addAttribute("listComand", listComand);
 		return "comand";
-
 	}
+	
+	
+	
+	
 }
