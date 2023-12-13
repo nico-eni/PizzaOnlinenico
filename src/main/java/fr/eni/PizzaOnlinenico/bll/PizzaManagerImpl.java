@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import fr.eni.PizzaOnlinenico.bo.Pizza;
 import fr.eni.PizzaOnlinenico.dal.PizzaDAO;
 
+import java.util.List;
+
 /**
  * Classe de gestion des pizzas.
  * Cette classe permet de gérer les opérations liées aux pizzas telles que l'ajout d'une pizza, d'une base,
@@ -88,5 +90,15 @@ public class PizzaManagerImpl implements PizzaManager{
 	@Override
 	public void AddTopping(Topping topping) {
 		toppingdao.save(topping);
+	}
+
+	/**
+	 * Récupère toutes les pizzas de la base de données.
+	 *
+	 * @return La liste des pizzas.
+	 */
+	@Override
+	public List<Pizza> getAllPizzas() {
+		return (List<Pizza>) pizzadao.findAll();
 	}
 }

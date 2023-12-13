@@ -15,9 +15,10 @@ public class Pizza {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idPizza;
+	private Long idPizza;
 	private String name;
 	private Double price;
+	private String imageUrl;
 
 	@ManyToOne
 	private BasePizza basePizza;
@@ -29,8 +30,9 @@ public class Pizza {
 	private List<Cheese> cheeses = new ArrayList<>();
 
 
-	public Pizza(String name) {
+	public Pizza(String name , String imageUrl) {
 		this.name = name;
+		this.imageUrl = imageUrl;
 	}
 
 

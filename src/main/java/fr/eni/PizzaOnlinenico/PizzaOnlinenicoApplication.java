@@ -19,7 +19,7 @@ public class PizzaOnlinenicoApplication {
 
 	@PostConstruct
 	public void init() {
-		// Create a BasePizza
+		/* // Create a BasePizza
 		BasePizza basePizza = new BasePizza("Tomate");
 		pizzamanager.AddBasePizza(basePizza);
 
@@ -41,7 +41,7 @@ public class PizzaOnlinenicoApplication {
 		pizzamanager.AddTopping(topping1);
 
 		// pour ajouter le prix de la pizza une fois que tous les ingredients sont ajoutés
-		pizzamanager.AddPizza(pizza1);
+		pizzamanager.AddPizza(pizza1);*/
 	}
 
 	public static void main(String[] args) {
