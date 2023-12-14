@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.x.x/css/uikit.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.x.x/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.x.x/js/uikit-icons.min.js"></script>
+
+    <style>
+        body {
+            background-color: #fff9e6;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .uk-card {
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: white;
+            margin-bottom: 10px;
+            width: 300px;
+        }
+
+        .uk-card-header, .uk-card-body {
+            padding: 20px;
+        }
+
+        .uk-card-title {
+            color: #ffd700;
+        }
+
+        .pizza-details {
+            margin-top: 5px;
+            color: #555;
+        }
+
+        .uk-card-footer {
+            padding: 20px;
+            background-color: white;
+        }
+
+        .uk-button-primary {
+            background-color: #ffd700;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 3px 10px;
+            transition: background-color 0.3s;
+        }
+
+        .uk-button-primary:hover {
+            background-color: #e6c300;
+        }
+
+        .uk-cover-container {
+            height: auto;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="uk-container uk-container-large">
+    <h1 class="uk-heading-line uk-text-center"><span>panier</span></h1>
+    <div th:if="${comand != null}">
+        <p><strong>Date et heure:</strong> <span th:text="${#temporals.format(comand.date, 'yyyy-MM-dd HH:mm')}"></span></p>
+        <p><strong>Total:</strong> <span th:text="${comand.total} + ' €'"></span></p>
+        <div class="uk-grid uk-child-width-1-3@s uk-margin" uk-grid>
+            <div th:each="pizza : ${comand.pizza}" th:if="${pizza != null}" class="uk-card uk-card-default">
+                    <div class="uk-card-header">
+                        <h2 class="uk-card-title" th:text="${pizza.name}"></h2>
+                    </div>
+                    <div class="uk-card-body">
+                        <img th:src="${pizza.imageUrl}" alt="Pizza image" class="uk-cover-container">
+                        <p class="pizza-details">Prix: <span th:text="${pizza.price} + ' €'"></span></p>
+                    </div>
+                    <div class="uk-card-footer">
+                        <button class="uk-button uk-button-primary">supprimer</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

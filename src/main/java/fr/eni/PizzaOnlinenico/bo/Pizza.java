@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class Pizza {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPizza;
@@ -28,10 +28,19 @@ public class Pizza {
 
 	@OneToMany(mappedBy = "pizza")
 	private List<Cheese> cheeses = new ArrayList<>();
-	
-	@ManyToOne
-	private Comand comand;
 
+	/**
+	 * ManyToMany: une pizza peut être commandée par plusieurs commandes
+	 * et une commande peut contenir plusieurs pizzas
+	 * @JoinTable: permet de définir la table de jointure
+	 * joinColumns: permet de définir la colonne de jointure avec la table pizza et la clé primaire
+	 * inverseJoinColumns: permet de définir la colonne de jointure avec la table inverse (comand) et la clé étrangère
+	 */
+	@ManyToMany
+	@JoinTable(name = "pizza_comand",
+			joinColumns = @JoinColumn(name = "pizza_id"),
+			inverseJoinColumns = @JoinColumn(name = "comand_id"))
+	private List<Comand> comands = new ArrayList<>();
 
 	public Pizza(String name , String imageUrl) {
 		this.name = name;
