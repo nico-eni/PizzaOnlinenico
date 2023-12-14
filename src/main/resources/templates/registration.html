@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/uikit.min.css" />
+	<script src="/js/uikit.min.js"></script>
+	<script src="/js/uikit-icons.min.js"></script>
+	<link rel="stylesheet" href="/style.css">
+	<title>Formulaire d'inscription</title>
+</head>
+
+<body>
+
+	<!-- En-tête de page -->
+	<header>
+		<h1>ENIPIZZ</h1>
+
+		<nav class="uk-navbar">
+			<div class="uk-navbar-left">
+				<ul class="uk-navbar-nav">
+					<li class="uk-active"><a href="home">&nbsp; Accueil</a></li>
+					<li><a href="creationPizza.html">A la carte</a></li>
+					<li><a href="informations.html">Restaurant</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+			</div>
+			<div class="uk-navbar-right">
+				<ul class="uk-navbar-nav">
+					<li><a href="connexion">Se connecter</a></li>
+					<li><a href="registration">S'inscrire</a></li>
+					<li><a href="#"><img src="/images/panier.png" width="50px"></img></a></li>
+				</ul>
+			</div>
+		</nav>
+
+	</header>
+
+
+	<!-- Début du main -->
+	<main id="bg" class="registrationCustomer">
+
+
+
+
+		<div id="form">
+
+			<!-- Début du formulaire -->
+			<form th:action="@{/registration}" th:object="${customer}" method="POST">
+				<fieldset>
+					<legend>Formulaire d'inscription</legend>
+
+
+					<!-- Choix de la civilité, saisie du nom et du prénom -->
+					<div class="case">
+						<select name="civility" id="civility">
+							<option value="madame" th:field="*{civility}">Mme</option>
+							<option value="mademoiselle" th:field="*{civility}">Mlle</option>
+							<option value="monsieur" th:field="*{civility}">Mr</option>
+						</select>
+
+						<input type="text" th:field="*{usernameC}" maxlength="50" placeholder=" Nom *" />
+
+						<input type="text" th:field="*{firstnameC}" name="firstname" maxlength="50"
+							placeholder=" Prénom *" />
+					</div>
+
+					<!-- Messages d'erreurs -->
+					<span></span>&nbsp;
+					<span th:if="${#fields.hasErrors('usernameC')}" th:errors="*{usernameC}"
+						class="error"></span>&emsp;&emsp;
+					<span th:if="${#fields.hasErrors('firstnameC')}" th:errors="*{firstnameC}" class="error"></span>
+
+
+					<div class="case">
+						<input type="email" th:field="*{mailC}" name="mail" maxlength="50" placeholder=" Email *" />
+
+						<input type="tel" th:field="*{phoneC}" name="phone" maxlength="10" placeholder=" Téléphone *" />
+					</div>
+
+					<!-- Messages d'erreurs -->
+					<span th:if="${#fields.hasErrors('mailC')}" th:errors="*{mailC}" class="error"></span>&emsp;&emsp;
+					<span th:if="${#fields.hasErrors('phoneC')}" th:errors="*{phoneC}" class="error"></span>
+
+					<!-- Mots de passe -->
+					<div class="case">
+						<input type="password" th:field="*{mdpC}" name="mdp" maxlength="50"
+							placeholder=" Mot de passe *" />
+
+						<input type="password" name="confirmMdp" maxlength="10"
+							placeholder=" Confirmation Mot de passe *" />
+
+					</div>
+
+					<!-- Messages d'erreurs Mot de passe-->
+					<span th:if="${#fields.hasErrors('mdpC')}" th:errors="*{mdpC}" class="error"></span>&emsp;&emsp;
+
+
+					<!-- Saisie de l'adresse -->
+					<div class="case">
+						<input type="text" th:field="*{addressC}" name="address" maxlength="100"
+							placeholder=" Adresse *" />
+					</div>
+
+
+					<!-- Message d'erreur -->
+					<span th:if="${#fields.hasErrors('addressC')}" th:errors="*{addressC}"
+						class="error"></span>&emsp;&emsp;
+
+					<!-- Saisie du code postal et de la ville -->
+					<div class="case">
+						<input type="number" th:field="*{postalCodeC}" name="postalCode" min="0" pattern="[0-9]{5}"
+							placeholder="Code postal *" />
+						<input type="text" th:field="*{cityC}" name="city" maxlength="50" placeholder=" Ville *" />
+					</div>
+
+					<!-- Message d'erreur -->
+					<span th:if="${#fields.hasErrors('postalCodeC')}" th:errors="*{postalCodeC}"
+						class="error"></span>&nbsp;
+					<span th:if="${#fields.hasErrors('cityC')}" th:errors="*{cityC}" class="error"></span>&emsp;&emsp;
+
+
+
+					<!-- Saisie de la société -->
+					<div class="case">
+						<input type="text" name="company" maxlength="120" placeholder=" Société" />
+					</div>
+
+					<!-- Saisie de l'étage - Bâtiment - Ascenceur -->
+					<div class="case">
+						<input type="text" name="floor" maxlength="20" placeholder=" Etage" />
+
+						<input type="text" name="building" maxlength="10" placeholder=" Bâtiment" />
+
+						<input type="text" name="elevator" maxlength="10" placeholder=" Ascenceur" />
+					</div>
+
+
+					<!-- Saisie de l'interphone - Digicode 1 - Digicode 2 -->
+					<div class="case">
+						<input type="text" name="intercom" maxlength="20" placeholder="Interphone" />
+
+						<input type="text" name="digicode1" maxlength="10" placeholder="Digicode 1" />
+
+						<input type="text" name="digicode2" maxlength="10" placeholder="Digicode 2" />
+					</div>
+
+					<!-- Saisie des instructions -->
+					<div class="case">
+						<textarea name="instruction" id="instruction" rows="10">
+                            Instructions spéciales
+                    </textarea>
+					</div>
+
+					<!-- Case à cocher  -->
+					<div class="footForm">
+						<label>
+							<input type="checkbox" class="robot" name="robot" value="robot">
+							Je ne suis pas un robot
+						</label>
+					</div>
+
+					<!-- Message d'erreur -->
+					<!--<span th:if="${#fields.hasErrors('robot')}" th:errors="*{robot}" class="error"></span>&nbsp;-->
+
+
+					<!-- Bouton d'inscription -->
+					<div class="btnRegistration">
+						<button class="btnInscrire" type="submit">Valider</button>
+					</div>
+
+				</fieldset>
+			</form>
+			<!-- Fin du formulaire -->
+
+		</div>
+
+		<!-- Test affichage des clients -->
+		<div>
+			<ul>
+				<li th:each="client : ${lstCustomers}">
+					<span th:text="${client.usernameC}" /> <span th:text="${client.firstnameC}" />
+				</li>
+			</ul>
+		</div>
+
+	</main>
+	<!-- Fin du main -->
+
+
+
+	<!-- Pied de page -->
+	<footer>
+		<nav class="uk-navbar" uk-navbar>
+			<div class="uk-navbar-left">
+				<ul class="uk-navbar-nav">
+					<li><a href="#">Mentions légales</a></li>
+					<li><a href="#">Conditions générales de vente</a></li>
+				</ul>
+			</div>
+		</nav>
+	</footer>
+
+</body>
+
+</html>

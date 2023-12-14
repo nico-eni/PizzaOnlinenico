@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/uikit.min.css" />
+	<script src="/js/uikit.min.js"></script>
+	<script src="/js/uikit-icons.min.js"></script>
+	<link rel="stylesheet" href="/style.css">
+	<title>Formulaire d'inscription</title>
+</head>
+
+<body>
+
+	<!-- En-tête de page -->
+	<header>
+		<h1>ENIPIZZ</h1>
+
+		<nav class="uk-navbar">
+			<div class="uk-navbar-left">
+				<ul class="uk-navbar-nav">
+					<li class="uk-active"><a href="home">&nbsp; Accueil</a></li>
+					<li><a href="creationPizza.html">A la carte</a></li>
+					<li><a href="informations.html">Restaurant</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+			</div>
+			<div class="uk-navbar-right">
+				<ul class="uk-navbar-nav">
+					<li><a href="connexion">Se connecter</a></li>
+					<li><a href="registration">S'inscrire</a></li>
+					<li><a href="#"><img src="/images/panier.png" width="50px"></img></a></li>
+				</ul>
+			</div>
+		</nav>
+
+	</header>
+
+
+	<!-- Début du main -->
+	<main id="bgConnect" class="connexionCustomer">
+
+
+		<div id="formConnect">
+
+			<!-- Début du formulaire -->
+			<form action="/connexion"  method="POST">
+				<fieldset>
+					<legend>Formulaire de connexion</legend>
+
+
+					
+					
+					<div class="case">
+						<input type="email" name="mail" maxlength="50" placeholder=" Email *" />
+
+					</div>
+
+					<!--- Messages d'erreurs 
+					<span th:if="${#fields.hasErrors('mailC')}" th:errors="*{mailC}" class="error"></span>&emsp;&emsp; -->
+
+					 <!--Mot de passe -->
+					<div class="case">
+						<input type="password" name="mdp" maxlength="50"
+							placeholder=" Mot de passe *" />
+					</div>
+
+					<!-- Messages d'erreurs Mot de passe
+					<span th:if="${#fields.hasErrors('mdpC')}" th:errors="*{mdpC}" class="error"></span>&emsp;&emsp;-->
+
+
+			
+
+	
+				
+					 <!--Bouton d'inscription -->
+					<div class="btnConnexion">
+						<button class="btnConnecter" type="submit">Se connecter</button>
+					</div>
+
+				</fieldset>
+			</form>
+			<!-- Fin du formulaire -->
+
+		</div>
+
+
+
+	</main>
+	<!-- Fin du main -->
+
+
+
+	<!-- Pied de page -->
+	<footer>
+		<nav class="uk-navbar" uk-navbar>
+			<div class="uk-navbar-left">
+				<ul class="uk-navbar-nav">
+					<li><a href="#">Mentions légales</a></li>
+					<li><a href="#">Conditions générales de vente</a></li>
+				</ul>
+			</div>
+		</nav>
+	</footer>
+
+</body>
+
+</html>
