@@ -182,4 +182,12 @@ public class PizzaManagerImpl implements PizzaManager {
 			return null;
 		}
 	}
+
+	@Override
+	public void deletePizzaFromCommand(Long pizzaId) {
+		Comand comand = comanddao.findCurrentComand(pizzaId);
+		Pizza pizza = pizzadao.findById(pizzaId).orElseThrow(() -> new IllegalArgumentException("Pizza not found"));
+		comand.getPizzas().remove(pizza);
+		comanddao.save(comand);
+	}
 }
