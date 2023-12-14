@@ -7,6 +7,7 @@ import fr.eni.PizzaOnlinenico.bo.Topping;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +28,21 @@ public class PizzaOnlinenicoApplication {
 	@PostConstruct
 	@Transactional
 	public void init() {
-		/* // Create a BasePizza
+		/*
+		// Create a BasePizza
 		BasePizza basePizza = new BasePizza("Tomate");
 		pizzamanager.AddBasePizza(basePizza);
 
 		// Create a Pizza
-		Pizza pizza1 = new Pizza("Pepperoni Pizza");
+		Pizza pizza1 = new Pizza("Pepperoni Pizza", "pepperoni.jpg");
 		pizza1.setBasePizza(basePizza);
 		pizzamanager.AddPizza(pizza1);
+
+		// Create a Topping
+		Topping topping1 = new Topping("Pepperoni");
+		topping1.setPizza(pizza1);
+		pizza1.getToppings().add(topping1);
+		pizzamanager.AddTopping(topping1);
 
 		// Create a Cheese
 		Cheese cheese1 = new Cheese("Mozzarella");
@@ -42,25 +50,26 @@ public class PizzaOnlinenicoApplication {
 		pizza1.getCheeses().add(cheese1);
 		pizzamanager.AddCheese(cheese1);
 
-		// Create a Topping
-		Topping topping1 = new Topping("Pepperoni");
-		topping1.setPizza(pizza1);
-		pizza1.getToppings().add(topping1);
-		pizzamanager.AddTopping(topping1);
-	}
-	
-//	model.addAttribute("listComand", comanddao.findAll());	
-//	return "comand";
+		// Create a Comand
+		Comand comand1 = new Comand(LocalDateTime.now());
+		comand1.getPizza().add(pizza1);
+		pizzamanager.AddComand(comand1);
 
-	
-//	Comand comand2 = new Comand("12/12/2023",28.00);		
-//	List<Pizza> pizzaList = comand2.getPizza();
-//	pizzaList.add(pizza2);
-////	pizzaList.forEach(n -> System.out.println(n.getName()));
-//	pizzamanager.AddComand(comand);
+		// Establish the many-to-many relationship
+		pizza1.getComands().add(comand1);
+		pizzamanager.AddPizza(pizza1);
+		System.out.println("pizza Id is here brah :::: " + pizza1.getIdPizza());
+
+		System.out.println("**************************************************");
+		pizzamanager.printPizzaAndComandDetails(1L); */
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(PizzaOnlinenicoApplication.class, args);
 	}
-
 }
+
+
+
+
+

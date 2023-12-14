@@ -1,9 +1,6 @@
 package fr.eni.PizzaOnlinenico.ihm;
 
-import fr.eni.PizzaOnlinenico.bo.BasePizza;
-import fr.eni.PizzaOnlinenico.bo.Cheese;
-import fr.eni.PizzaOnlinenico.bo.Pizza;
-import fr.eni.PizzaOnlinenico.bo.Topping;
+import fr.eni.PizzaOnlinenico.bo.*;
 import fr.eni.PizzaOnlinenico.bll.PizzaManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -86,9 +84,20 @@ public class AddPizzaController{
             pizzaManager.AddTopping(topping);
         }
 
+        // Add command with date now
+        Comand comand = new Comand(LocalDateTime.now());
+        comand.getPizza().add(pizza);
+        pizzaManager.AddComand(comand);
+
+        // Establish the many-to-many relationship
+        pizza.getComands().add(comand);
+
         // Add the price of the pizza once all the ingredients are added
         pizzaManager.AddPizza(pizza);
 
-        return "redirect:/show-pizza";
+        // Redirect to the add-pizzas-to-cart URL with the ID of the newly created pizza
+        return "redirect:/add-pizzas-to-cart/" + pizza.getIdPizza();
     }
+
 }
+

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import fr.eni.PizzaOnlinenico.bo.Pizza;
 import fr.eni.PizzaOnlinenico.dal.PizzaDAO;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -47,10 +48,10 @@ public class PizzaManagerImpl implements PizzaManager {
 	 * @param pizza L'objet Pizza à ajouter.
 	 */
 	@Override
-	public void AddPizza(Pizza pizza) {
+	public Pizza AddPizza(Pizza pizza) {
 		double price = calculatePrice(pizza);
 		pizza.setPrice(price);
-		pizzadao.save(pizza);
+		return pizzadao.save(pizza);
 	}
 
 	/**
@@ -101,6 +102,62 @@ public class PizzaManagerImpl implements PizzaManager {
 	}
 
 	/**
+	 * Ajoute une commande à la base de données.
+	 *
+	 * @param comand L'objet Comand à ajouter.
+	 */
+
+	@Override
+	public void AddComand(Comand comand) {
+		Double total = comand.getPizza().stream()
+				.mapToDouble(Pizza::getPrice)
+				.sum();
+		comand.setTotal(total);
+		comanddao.save(comand);
+	}
+
+	/**
+	 * Affiche les détails d'une pizza et de la commande associée.
+	 *
+	 * @param pizzaId L'identifiant de la pizza.
+	 */
+
+	@Override
+	@Transactional
+	public void printPizzaAndComandDetails(Long pizzaId) {
+		Optional<Pizza> optionalPizza = pizzadao.findById(pizzaId);
+		if (optionalPizza.isPresent()) {
+			Pizza pizza = optionalPizza.get();
+			System.out.println("*******Pizza: " + pizza.getName());
+			System.out.println("*******Base: " + pizza.getBasePizza().getName());
+			System.out.println("*******Cheeses: ");
+			for (Cheese cheese : pizza.getCheeses()) {
+				System.out.println("- " + cheese.getName());
+			}
+			System.out.println("*********Toppings: ");
+			for (Topping topping : pizza.getToppings()) {
+				System.out.println("- " + topping.getName());
+			}
+			System.out.println("*********Comands: ");
+			for (Comand comand : pizza.getComands()) {
+				System.out.println("- Comand ID: " + comand.getId() + ", Date: " + comand.getDate() + ", Total: " + comand.getTotal());
+			}
+		} else {
+			System.out.println("Pizza with ID " + pizzaId + " not found.");
+		}
+	}
+
+	/**
+	 * Récupère toutes les commandes de la base de données.
+	 *
+	 * @return La liste des commandes.
+	 */
+	@Override
+	public List<Comand> getAllComands() {
+		return (List<Comand>) comanddao.findAll();
+	}
+
+	/**
 	 * Récupère toutes les pizzas de la base de données.
 	 *
 	 * @return La liste des pizzas.
@@ -108,5 +165,21 @@ public class PizzaManagerImpl implements PizzaManager {
 	@Override
 	public List<Pizza> getAllPizzas() {
 		return (List<Pizza>) pizzadao.findAll();
+	}
+
+	/**
+	 * Récupère une pizza par son identifiant.
+	 *
+	 * @param pizzaId L'identifiant de la pizza.
+	 * @return La pizza.
+	 */
+	@Override
+	public Pizza getPizzaById(Long pizzaId) {
+		Optional<Pizza> optionalPizza = pizzadao.findById(pizzaId);
+		if (optionalPizza.isPresent()) {
+			return optionalPizza.get();
+		} else {
+			return null;
+		}
 	}
 }
