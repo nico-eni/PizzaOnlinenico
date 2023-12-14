@@ -23,4 +23,6 @@ public interface PizzaManager {
 	 void printPizzaAndComandDetails(Long pizzaId);
 
     Pizza getPizzaById(Long pizzaId);
+
+    void deletePizzaFromCommand(Long pizzaId);
 }
